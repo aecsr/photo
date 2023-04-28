@@ -1,0 +1,23 @@
+clc;
+clear all;
+close all;
+
+img = imread("image1.jpeg");
+img_gray = rgb2gray(img);
+[rows,cols] = size(img_gray);
+con_img = zeros(rows,cols);
+
+for i = 1:rows
+    for j = 1:cols
+        if(img_gray(i,j) < 50)
+            con_img(i,j) = 0;
+        elseif(img_gray(i,j) >150)
+            con_img(i,j) = 255;
+        else 
+            con_img(i,j) = (5*(double(img_gray(i,j))-100));
+        end
+    end
+end
+
+subplot(1,2,1);imshow(img_gray)
+subplot(1,2,2);imshow(con_img)
